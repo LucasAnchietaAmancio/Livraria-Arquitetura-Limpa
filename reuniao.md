@@ -10,6 +10,7 @@
 ## UseCases:
 [] Cadastrar Usuário:
     - CPF ou email devem ser únicos
+    - CPF, email e nome devem ser obrigatórios
 
 [] Buscar um usuário por CPF:
     - Retornar usuário ou vazio

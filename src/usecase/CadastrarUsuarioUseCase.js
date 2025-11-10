@@ -1,11 +1,22 @@
 class CadastrarUsuario{
     constructor(UserRepository){
-        this.UserRepository = UserRepository
-    }
+
+        if(!UserRepository) {
+            throw new Error(
+                "UserRepository não fornecido"
+            );
+        };
+
+        this.UserRepository = UserRepository;
+    };
 
     async CreateUser({nome_completo,CPF,endereco,telefone,email}){
 
-        console.log(this.UserRepository.CreateUser)
+       if(!nome_completo || !CPF || !email) {
+            throw new Error(
+                "Não é permitido fazer o cadastro sem os dados obrigatórios"
+            );
+       };
 
        return  await this.UserRepository.CreateUser({
             nome_completo,
@@ -17,4 +28,4 @@ class CadastrarUsuario{
     };
 };
 
-module.exports = CadastrarUsuario
+module.exports = CadastrarUsuario;
