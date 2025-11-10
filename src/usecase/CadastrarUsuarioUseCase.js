@@ -1,16 +1,20 @@
-function CadastrarUsuario(){
-    return async function Cadastrar({nome_completo, CPF, endereco, telefone, email}) {
-        return UserRepository(
+class CadastrarUsuario{
+    constructor(UserRepository){
+        this.UserRepository = UserRepository
+    }
+
+    async CreateUser({nome_completo,CPF,endereco,telefone,email}){
+
+        console.log(this.UserRepository.CreateUser)
+
+       return  await this.UserRepository.CreateUser({
             nome_completo,
             CPF,
             endereco,
             telefone,
             email
-        );
+        });
     };
 };
 
-
-const test = CadastrarUsuario().Cadastrar({nome_completo:"lucas"})
-
-console.log(test)
+module.exports = CadastrarUsuario
