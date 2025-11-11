@@ -1,5 +1,5 @@
 const CadastrarUsuarioUseCase = require("../CadastrarUsuarioUseCase")
-
+const AppError = require("../../shared/errors/AppError")
 describe("Cadastrar usuario Use Case", function(){
 
     const UserRepository = {
@@ -36,10 +36,10 @@ describe("Cadastrar usuario Use Case", function(){
     test("Deve retornar um throw AppError caso o UserRepository não seja passado",function (){
         expect(() => {
             new CadastrarUsuarioUseCase()
-        }).toThrow("UserRepository não fornecido")
+        }).toThrow(AppError.depencence)
     });
 
     test("Deve retornar um throw AppError caso o algum dos dados obrigatórios não sejam passados", async function () {
-        expect(sut.CreateUser(userNotDTO)).rejects.toThrow("Não é permitido fazer o cadastro sem os dados obrigatórios")
+        expect(sut.CreateUser(userNotDTO)).rejects.toThrow(new AppError(AppError.dataRequiredNotProvided))
     });
 });
